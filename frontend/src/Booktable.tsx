@@ -1,9 +1,8 @@
 import { book } from './types/books'; // Ensure this path is correct based on your file structure
 import { useState, useEffect } from 'react';
-import 'bootstrap';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function BooksList() {
-  //Get the variable and make an incrementer
+  //Get the variable and make an incrementer for each variable
   const [books_data, setFoods] = useState<book[]>([]);
   const [pageSize, setPageSize] = useState<number>(10);
   const [pageNum, setPageNum] = useState<number>(1);
@@ -32,9 +31,9 @@ function BooksList() {
 
   return (
     <>
-      <h1>Books</h1>
-      <table border="1">
-        <thead>
+      <h1 className="text-center my-4">Books</h1>
+      <table className="table table-striped table-bordered" border="1">
+        <thead className="table-dark">
           <tr>
             <th>Title</th>
             <th>Author</th>
@@ -60,17 +59,26 @@ function BooksList() {
         </tbody>
       </table>
       <br></br>
+      {
+        //Get the page number
+      }
       {[...Array(totalPages)].map((_, index) => (
         <button key={index + 1} onClick={() => setPageNum(index + 1)}>
           {index + 1}
         </button>
       ))}
       <br></br>
+      {
+        //Make the unsorted option
+      }
       <select value={sort} onChange={(s) => setSort(Number(s.target.value))}>
         <option value="1">Sorted</option>
         <option value="0">Unsorted</option>
       </select>
 
+      {
+        //Get the results per page
+      }
       <br></br>
       <label htmlFor="pages">Results per page </label>
       <select
